@@ -6,6 +6,8 @@ import misk.jdbc.DataSourceService
 import misk.jdbc.DataSourceType
 import misk.jooq.listeners.AvoidUsingSelectStarListener
 import misk.jooq.listeners.JooqSQLLogger
+import misk.jooq.listeners.JooqSignedRecordListener
+import misk.jooq.listeners.JooqSignedRecordListenerOptions
 import misk.jooq.listeners.JooqTimestampRecordListener
 import misk.jooq.listeners.JooqTimestampRecordListenerOptions
 import org.jooq.Configuration
@@ -29,6 +31,8 @@ class JooqTransacter @JvmOverloads constructor(
   private val jooqCodeGenSchemaName: String,
   private val jooqTimestampRecordListenerOptions: JooqTimestampRecordListenerOptions =
     JooqTimestampRecordListenerOptions(install = false),
+  private val jooqSignedRecordListenerOptions: JooqSignedRecordListenerOptions =
+    JooqSignedRecordListenerOptions(install = false),
   private val clock: Clock,
   private val jooqConfigExtension: Configuration.() -> Unit = {}
 ) {
@@ -141,6 +145,10 @@ class JooqTransacter @JvmOverloads constructor(
                 updatedAtColumnName = jooqTimestampRecordListenerOptions.updatedAtColumnName
               )
             )
+          }
+
+          if (jooqSignedRecordListenerOptions.install) {
+            set(JooqSignedRecordListener(jooqSignedRecordListenerOptions))
           }
         }.apply(jooqConfigExtension)
       }

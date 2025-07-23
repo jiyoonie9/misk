@@ -16,6 +16,8 @@ import misk.jdbc.JdbcModule
 import misk.jdbc.RealDatabasePool
 import misk.jooq.listeners.AvoidUsingSelectStarListener
 import misk.jooq.listeners.JooqSQLLogger
+import misk.jooq.listeners.JooqSignedRecordListener
+import misk.jooq.listeners.JooqSignedRecordListenerOptions
 import misk.jooq.listeners.JooqTimestampRecordListener
 import misk.jooq.listeners.JooqTimestampRecordListenerOptions
 import org.jooq.Configuration
@@ -38,6 +40,8 @@ class JooqModule @JvmOverloads constructor(
   private val readerQualifier: KClass<out Annotation>? = null,
   private val jooqTimestampRecordListenerOptions: JooqTimestampRecordListenerOptions =
     JooqTimestampRecordListenerOptions(install = false),
+  private val jooqSignedRecordListenerOptions: JooqSignedRecordListenerOptions =
+    JooqSignedRecordListenerOptions(install = false),
   private val installHealthChecks: Boolean = true,
   private val jooqConfigExtension: Configuration.() -> Unit = {},
 ) : KAbstractModule() {
@@ -93,6 +97,7 @@ class JooqModule @JvmOverloads constructor(
           dataSourceConfig = datasourceConfig,
           jooqCodeGenSchemaName = jooqCodeGenSchemaName,
           jooqTimestampRecordListenerOptions = jooqTimestampRecordListenerOptions,
+          jooqSignedRecordListenerOptions = jooqSignedRecordListenerOptions,
           clock = clock,
           jooqConfigExtension = jooqConfigExtension
         )
