@@ -3,15 +3,13 @@ package misk.jooq
 import com.google.common.hash.Hashing
 import wisp.logging.getLogger
 import java.util.Arrays
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
+import jakarta.inject.Inject
+import com.google.inject.Provider
 
 /**
  * JOOQ equivalent of Hibernate's EntitySigner.
  * Uses dependency injection with HmacSha256 provider, similar to the cash-server pattern.
  */
-@Singleton
 class JooqEntitySigner @Inject constructor(
   private val hmacFunctionProvider: Provider<HmacSha256>
 ) {

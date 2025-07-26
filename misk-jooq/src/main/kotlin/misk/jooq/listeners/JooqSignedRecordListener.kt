@@ -5,19 +5,17 @@ import misk.jooq.JooqSignable
 import org.jooq.RecordContext
 import org.jooq.RecordListener
 import wisp.logging.getLogger
-import javax.inject.Inject
-import javax.inject.Singleton
+import jakarta.inject.Inject
 
 /**
  * Exception thrown when a record's signature is invalid.
  */
-class InvalidSignatureException(message: String, cause: Throwable? = null) : RuntimeException(message, cause)
+class InvalidSignatureException @JvmOverloads constructor(message: String, cause: Throwable? = null) : RuntimeException(message, cause)
 
 /**
  * A JOOQ RecordListener that automatically signs records with HMAC signatures.
  * Equivalent to Hibernate's SignedEntityEventListener, using EntitySigner pattern.
  */
-@Singleton
 class JooqSignedRecordListener @Inject constructor(
   private val jooqEntitySigner: JooqEntitySigner
 ) : RecordListener {
@@ -50,7 +48,7 @@ class JooqSignedRecordListener @Inject constructor(
 /**
  * Configuration options for JooqSignedRecordListener
  */
-data class JooqSignedRecordListenerOptions(
+data class JooqSignedRecordListenerOptions @JvmOverloads constructor(
   val install: Boolean,
   val enableVerification: Boolean = true
 )

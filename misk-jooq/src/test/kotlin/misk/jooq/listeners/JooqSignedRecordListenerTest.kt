@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
-import javax.inject.Provider
+import com.google.inject.Provider
 
 class JooqSignedRecordListenerTest {
 
