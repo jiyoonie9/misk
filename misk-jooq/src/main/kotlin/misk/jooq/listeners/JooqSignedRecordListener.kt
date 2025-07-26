@@ -4,7 +4,6 @@ import misk.jooq.JooqEntitySigner
 import misk.jooq.JooqSignable
 import org.jooq.RecordContext
 import org.jooq.RecordListener
-import wisp.logging.getLogger
 import jakarta.inject.Inject
 
 /**
@@ -19,10 +18,6 @@ class InvalidSignatureException @JvmOverloads constructor(message: String, cause
 class JooqSignedRecordListener @Inject constructor(
   private val jooqEntitySigner: JooqEntitySigner
 ) : RecordListener {
-
-  companion object {
-    private val logger = getLogger<JooqSignedRecordListener>()
-  }
 
   override fun insertStart(ctx: RecordContext) = maybeSign(ctx)
   override fun updateStart(ctx: RecordContext) = maybeSign(ctx)

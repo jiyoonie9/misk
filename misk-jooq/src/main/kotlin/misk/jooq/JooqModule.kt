@@ -14,19 +14,9 @@ import misk.jdbc.DataSourceService
 import misk.jdbc.DatabasePool
 import misk.jdbc.JdbcModule
 import misk.jdbc.RealDatabasePool
-import misk.jooq.listeners.JooqSQLLogger
 import misk.jooq.listeners.JooqSignedRecordListenerOptions
-import misk.jooq.listeners.JooqTimestampRecordListener
 import misk.jooq.listeners.JooqTimestampRecordListenerOptions
 import org.jooq.Configuration
-import org.jooq.DSLContext
-import org.jooq.SQLDialect
-import org.jooq.conf.MappedSchema
-import org.jooq.conf.RenderMapping
-import org.jooq.conf.Settings
-import org.jooq.impl.DSL
-import org.jooq.impl.DefaultExecuteListenerProvider
-import org.jooq.impl.DefaultTransactionProvider
 import java.time.Clock
 import kotlin.reflect.KClass
 
