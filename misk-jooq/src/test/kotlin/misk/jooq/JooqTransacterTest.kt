@@ -27,8 +27,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 
 @MiskTest(startService = true)
-internal class JooqTransacterTest {
-  @MiskTestModule private var module = ClientJooqTestingModule()
+class JooqTransacterTest {
+  @MiskTestModule
+  private val module = ClientJooqTestingModule()
+
   @Inject @JooqDBIdentifier private lateinit var transacter: JooqTransacter
   @Inject @JooqDBReadOnlyIdentifier private lateinit var readTransacter: JooqTransacter
   @Inject private lateinit var clock: FakeClock

@@ -28,6 +28,7 @@ dependencies {
   testImplementation(project(":misk-testing"))
   testImplementation(project(":misk"))
   testImplementation(testFixtures(project(":misk-jdbc")))
+  testImplementation(libs.mockitoKotlin)
 
   // Needed to generate jooq test db classes
   jooqGenerator(libs.mysql)

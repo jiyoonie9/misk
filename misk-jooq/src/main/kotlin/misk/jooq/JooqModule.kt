@@ -3,6 +3,7 @@ package misk.jooq
 import com.google.inject.Provider
 import jakarta.inject.Inject
 import misk.healthchecks.HealthCheck
+import misk.jooq.listeners.JooqSignedRecordListener
 import misk.inject.KAbstractModule
 import misk.inject.asSingleton
 import misk.inject.keyOf
@@ -10,13 +11,10 @@ import misk.inject.toKey
 import misk.jdbc.DataSourceClusterConfig
 import misk.jdbc.DataSourceConfig
 import misk.jdbc.DataSourceService
-import misk.jdbc.DataSourceType
 import misk.jdbc.DatabasePool
 import misk.jdbc.JdbcModule
 import misk.jdbc.RealDatabasePool
-import misk.jooq.listeners.AvoidUsingSelectStarListener
 import misk.jooq.listeners.JooqSQLLogger
-import misk.jooq.listeners.JooqSignedRecordListener
 import misk.jooq.listeners.JooqSignedRecordListenerOptions
 import misk.jooq.listeners.JooqTimestampRecordListener
 import misk.jooq.listeners.JooqTimestampRecordListenerOptions
@@ -98,6 +96,7 @@ class JooqModule @JvmOverloads constructor(
           jooqCodeGenSchemaName = jooqCodeGenSchemaName,
           jooqTimestampRecordListenerOptions = jooqTimestampRecordListenerOptions,
           jooqSignedRecordListenerOptions = jooqSignedRecordListenerOptions,
+          jooqSignedRecordListener = null, // Will be set via binding when needed
           clock = clock,
           jooqConfigExtension = jooqConfigExtension
         )

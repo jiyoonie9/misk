@@ -33,6 +33,7 @@ class JooqTransacter @JvmOverloads constructor(
     JooqTimestampRecordListenerOptions(install = false),
   private val jooqSignedRecordListenerOptions: JooqSignedRecordListenerOptions =
     JooqSignedRecordListenerOptions(install = false),
+  private val jooqSignedRecordListener: JooqSignedRecordListener? = null,
   private val clock: Clock,
   private val jooqConfigExtension: Configuration.() -> Unit = {}
 ) {
@@ -147,8 +148,8 @@ class JooqTransacter @JvmOverloads constructor(
             )
           }
 
-          if (jooqSignedRecordListenerOptions.install) {
-            set(JooqSignedRecordListener(jooqSignedRecordListenerOptions))
+          if (jooqSignedRecordListenerOptions.install && jooqSignedRecordListener != null) {
+            set(jooqSignedRecordListener)
           }
         }.apply(jooqConfigExtension)
       }
