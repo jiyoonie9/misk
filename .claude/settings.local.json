@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(gradle :misk-jooq:test:*)",
-      "Bash(gradle:*)"
-    ],
-    "deny": []
-  }
-}
